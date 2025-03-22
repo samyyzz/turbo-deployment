@@ -1,0 +1,21 @@
+FROM node:18-alpine
+
+WORKDIR /usr/src
+
+COPY ./package*.json ./
+
+COPY ./packages ./packages
+
+COPY ./turbo.json ./turbo.json
+
+COPY ./apps/http ./http
+
+RUN npm install
+RUN npm run db:generate
+RUN npm run build
+
+# ENV DATABASE_URL="postgresql://postgres:ASDasd123@localhost:5432/mypostgresdb" // You dont need backend connection during an express Image build 
+
+EXPOSE 3001
+
+CMD [ "npm", "start:http" ]

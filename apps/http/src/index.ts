@@ -25,16 +25,17 @@ app.post("/signup", async (req, res) => {
     res.status(400).json({ message: "Failed to validate" });
     return;
   }
-  const userExist = await prismaClient.user.findFirst({
-    where: {
-      username: parsedBody.data?.username,
-    },
-  });
-  if (userExist) {
-    res.status(400).json({ message: "Username already exist" });
-    return;
-  }
+  // const userExist = await prismaClient.user.findFirst({
+  //   where: {
+  //     username: parsedBody.data?.username,
+  //   },
+  // });
+  // if (userExist) {
+  //   res.status(400).json({ message: "Username already exist" });
+  //   return;
+  // }
   const myPassword = await hashByPassword(parsedBody.data?.password);
+  console.log("password :", myPassword)
   try {
     const newUser = await prismaClient.user.create({
       data: {
@@ -139,6 +140,6 @@ app.put("/card/:cardId", async (req, res) => {
 });
 
 
-app.listen(3000, ()=> {
-  console.log("http Server Running on : http://localhost:3000")
+app.listen(3001, ()=> {
+  console.log("http Server Running on : http://localhost:3001")
 })

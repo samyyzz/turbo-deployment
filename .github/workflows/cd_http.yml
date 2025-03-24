@@ -23,6 +23,6 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          file: ./docker/Dockerfile.backend
+          file: ./docker/Dockerfile.http
           push: true
           tags: sameer99/turbo-deploy:${{github.sha}}

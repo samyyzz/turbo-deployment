@@ -1,7 +1,3 @@
-# build the docker image
-# push the docker image to dockerhub
-# SSH into VM
-
 name: Deploy the backend (http)
 on:
   push:
@@ -25,4 +21,4 @@ jobs:
           context: .
           file: ./docker/Dockerfile.http
           push: true
-          tags: sameer99/turbo-deploy:${{github.sha}}
+          tags: sameer99/turbo-http:${{github.sha}}

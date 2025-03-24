@@ -22,7 +22,7 @@ jobs:
       - name: Docker build and push
         uses: docker/build-push-action@v4
         with:
-          context: ./
+          context: .
           file: ./docker/Dockerfile.backend
           push: true
-          tags: sameer99/wow-be:${{github.sha}}
+          tags: sameer99/turbo-deploy:${{github.sha}}
